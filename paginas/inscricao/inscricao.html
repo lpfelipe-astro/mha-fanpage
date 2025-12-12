@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Lucas Pires">
+
+    <title> Boku no Hero Fanpage | Fanclub Inscrição </title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../css/inscricao.css">
+    <link rel="shortcut icon" href="../../imagens/ico/ua.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="container-header-nav">
+        <header class="header-opacidade">
+            <a href="../../index.html">
+                <img src="../../imagens/logo.png" alt="Logo de Boku No Hero Academia" class="logo">
+            </a>
+        </header>
+
+        <nav class="navbar">
+            <ul class="nav-list">
+                <li><a href="../../index.html" class="nav-link" title="Acesse a página inicial.">Home</a></li>
+                <li><a href="../personagens/personagens.html" class="nav-link" title="Conheça os personagens de Boku No Hero Academia.">Personagens</a></li>
+                <li><a href="inscricao.html" class="nav-link" title="Inscreva-se no Fan Clube de Boku No Hero Academia e realize sua matrícula na U.A.">Inscreva-se</a></li>
+                <li><a href="../spin-offs/spin-offs.html" class="nav-link" title="Descubra todos os Spin-Offs de Boku No Hero Academia.">Spin-Offs</a></li>
+                <li><a href="../mhn/my-hero-news.html" class="nav-link" title="Página noticiária que se passa no universo da obra.">My Hero News</a></li>
+                <li><a href="../historia/historia.html" class="nav-link" title="Descubra a história de Boku No Hero Academia.">História</a></li>
+                <li><a href="../quirks/quirks.html" class="nav-link" title="Conheça os Quirks, os poderes especiais de Boku No Hero Academia.">Quirks</a></li>
+            </ul>
+        </nav>
+    </div>
+
+ <div class="forms-container">
+        <!-- FORMULÁRIO FÃ CLUBE -->
+        <form class="form-card" action="mailto:lucas.felipe.pires1ds@gmail.com" method="post">
+            <input type="hidden" name="_subject" value="Nova Inscrição - Fã Clube MHA">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            
+            <h2 class="form-title">Fã Clube MHA</h2>
+            <p class="form-subtitle">Junte-se à comunidade brasileira de My Hero Academia!</p>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="form-label" for="fc-nome">Nome Completo *</label>
+                    <input type="text" id="fc-nome" name="Nome Completo" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="fc-email">E-mail *</label>
+                    <input type="email" id="fc-email" name="Email" class="form-input" placeholder="Ex: email@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="fc-nascimento">Data de Nascimento *</label>
+                    <input type="date" id="fc-nascimento" name="Data de Nascimento" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="fc-pais">País/Estado *</label>
+                    <input type="text" id="fc-pais" name="País/Estado" class="form-input" placeholder="Ex: Brasil - São Paulo" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="fc-conheceu">Como conheceu MHA? *</label>
+                    <select id="fc-conheceu" name="Como Conheceu MHA" class="form-select" required>
+                        <option value="">Selecione...</option>
+                        <option value="Anime">Anime</option>
+                        <option value="Mangá">Mangá</option>
+                        <option value="Amigos">Indicação de Amigos</option>
+                        <option value="Redes Sociais">Redes Sociais</option>
+                        <option value="Outro">Outro</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="fc-personagem">Personagem Favorito *</label>
+                    <input type="text" id="fc-personagem" name="Personagem Favorito" class="form-input" placeholder="Ex: Deku, Bakugo, Todoroki..." required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="fc-arco">Arco/Temporada Favorita *</label>
+                    <input type="text" id="fc-arco" name="Arco Favorito" class="form-input" placeholder="Ex: Festival Esportivo, Overhaul..." required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="fc-individualidade">Qual seria sua Individualidade? *</label>
+                    <input type="text" id="fc-individualidade" name="Sua Individualidade" class="form-input" placeholder="Descreva seu poder dos sonhos" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="fc-heroi-vilao">Herói ou Vilão Favorito? *</label>
+                    <input type="text" id="fc-heroi-vilao" name="Herói ou Vilão Favorito" class="form-input" placeholder="Ex: All Might" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="fc-tempo">Há quanto tempo é fã? *</label>
+                    <select id="fc-tempo" name="Tempo como Fã" class="form-select" required>
+                        <option value="">Selecione...</option>
+                        <option value="Menos de 1 ano">Menos de 1 ano</option>
+                        <option value="1-2 anos">1-2 anos</option>
+                        <option value="3-5 anos">3-5 anos</option>
+                        <option value="Mais de 5 anos">Mais de 5 anos</option>
+                        <option value="Desde o início">Desde o início</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="fc-redes">Redes Sociais (opcional)</label>
+                    <input type="text" id="fc-redes" name="Redes Sociais" class="form-input" placeholder="@seu_usuario">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="fc-interesse">Áreas de Interesse *</label>
+                    <select id="fc-interesse" name="Áreas de Interesse" class="form-select" required>
+                        <option value="">Selecione...</option>
+                        <option value="Discussões sobre episódios">Discussões sobre episódios</option>
+                        <option value="Fan arts e criações">Fan arts e criações</option>
+                        <option value="Cosplay">Cosplay</option>
+                        <option value="Teorias e análises">Teorias e análises</option>
+                        <option value="Todas as opções">Todas as opções</option>
+                    </select>
+                </div>
+
+                <div class="form-group full-width">
+                    <label class="form-label" for="fc-mensagem">Por que quer fazer parte do Fã Clube? *</label>
+                    <textarea id="fc-mensagem" name="Motivacao" class="form-textarea" placeholder="Conte-nos sua história com My Hero Academia..." required></textarea>
+                </div>
+            </div>
+
+            <div class="form-buttons">
+                <button type="submit" class="btn-glass send">Enviar</button>
+                <button type="reset" class="btn-glass reset">Limpar</button>
+            </div>
+        </form>
+
+        <div class="divider"></div>
+
+        <!-- FORMULÁRIO MATRÍCULA U.A. -->
+        <form class="form-card ua-form" action="https://formsubmit.co/lucas.felipe.pires1ds@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Nova Matrícula - U.A. High School">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            
+            <h2 class="form-title" id="inscricao-ua">Matrícula U.A.</h2>
+            <p class="form-subtitle">Candidate-se à mais prestigiada academia de heróis do Japão!</p>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="form-label" for="ua-nome-heroi">Nome de Herói *</label>
+                    <input type="text" id="ua-nome-heroi" name="Nome de Herói" class="form-input" placeholder="Ex: Deku, Dynamight..." required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="ua-nome-civil">Nome Civil *</label>
+                    <input type="text" id="ua-nome-civil" name="Nome Civil" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="ua-email">E-mail *</label>
+                    <input type="email" id="ua-email" name="Email" class="form-input" placeholder="Ex: email@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="ua-nascimento">Data de Nascimento *</label>
+                    <input type="date" id="ua-nascimento" name="Data de Nascimento" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="ua-tipo-quirk">Tipo de Individualidade *</label>
+                    <select id="ua-tipo-quirk" name="Tipo de Individualidade" class="form-select" required>
+                        <option value="">Selecione...</option>
+                        <option value="Emissão">Emissão</option>
+                        <option value="Transformação">Transformação</option>
+                        <option value="Mutação">Mutação</option>
+                        <option value="Acumulação">Acumulação</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="ua-curso">Curso Desejado *</label>
+                    <select id="ua-curso" name="Curso Desejado" class="form-select" required>
+                        <option value="">Selecione...</option>
+                        <option value="Departamento de Heróis">Departamento de Heróis</option>
+                        <option value="Departamento de Educação Geral">Departamento de Educação Geral</option>
+                        <option value="Departamento de Suporte">Departamento de Suporte</option>
+                        <option value="Departamento de Administração">Departamento de Administração</option>
+                    </select>
+                </div>
+
+                <div class="form-group full-width">
+                    <label class="form-label" for="ua-quirk-desc">Descrição da Individualidade *</label>
+                    <textarea id="ua-quirk-desc" name="Descrição da Individualidade" class="form-textarea" placeholder="Descreva detalhadamente sua Individualidade, suas capacidades e limitações..." required></textarea>
+                </div>
+
+                <div class="form-group full-width">
+                    <label class="form-label" for="ua-motivacao">Por que quer ser um Herói? *</label>
+                    <textarea id="ua-motivacao" name="Motivação para ser Herói" class="form-textarea" placeholder="O que te motiva a seguir o caminho do heroísmo?" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="ua-experiencia">Experiência Prévia *</label>
+                    <select id="ua-experiencia" name="Experiência Prévia" class="form-select" required>
+                        <option value="">Selecione...</option>
+                        <option value="Nenhuma">Nenhuma</option>
+                        <option value="Treinamento básico">Treinamento básico</option>
+                        <option value="Algumas situações reais">Algumas situações reais</option>
+                        <option value="Experiência moderada">Experiência moderada</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="ua-habilidades">Habilidades Especiais *</label>
+                    <input type="text" id="ua-habilidades" name="Habilidades Especiais" class="form-input" placeholder="Ex: Combate corpo a corpo, estratégia..." required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="ua-referencias">Referências (opcional)</label>
+                    <input type="text" id="ua-referencias" name="Referências" class="form-input" placeholder="Nome de heróis que podem recomendá-lo">
+                </div>
+
+                <div class="form-group full-width">
+                    <label class="form-label" for="ua-compromisso">Declaração de Compromisso *</label>
+                    <textarea id="ua-compromisso" name="Declaração de Compromisso" class="form-textarea" placeholder="Declare seu compromisso com os valores da U.A. e com a proteção da sociedade..." required></textarea>
+                </div>
+            </div>
+
+            <div class="form-buttons">
+                <button type="submit" class="btn-glass send">Enviar</button>
+                <button type="reset" class="btn-glass reset">Limpar</button>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h2>My Hero Academia Fanpage - Tudo o que você precisa saber em primeira mão.</h2>
+                <p>O site oficial dedicado aos fãs de My Hero Academia.</p>
+                <p>&copy; 2025 My Hero Academia Fanpage. Todos os direitos reservados aos respectivos proprietários.</p>
+                <br>
+                <hr>
+                <br>
+                <p>Desenvolvido por: <i>Lucas Pires</i> </p>
+                <p>Disciplina: Programação Web I - Projeto Bimestral</p>
+
+                <div class="footer-links">
+                    <h4>Referências:</h4>
+                    <ul>
+                        <li><a href="https://pt.wikipedia.org/wiki/My_Hero_Academia" target="_blank">Wikipédia My Hero
+                                Academia</a></li>
+                        <li><a href="https://myheroacademia.fandom.com/wiki/My_Hero_Academia_Wiki"
+                                target="_blank">Fandom | My Hero Academia </a></li>
+                        <li><a href="https://heroaca.com/" target="_blank">Site Oficial</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

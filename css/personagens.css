@@ -1,0 +1,203 @@
+/* CSS responsável pelo estilo da página de personagens (personagens.html)
+
+    Notas principais:
+    - Estrutura: container -> card-personagem -> img-area (thumb + full-body) -> info-area.
+    - Uso intencional de `overflow: visible` para permitir que a imagem full-body "sai a fora"
+    e crie um destaque visual sem precisar de markup adicional.
+*/
+
+#personagens {
+    padding: 40px;
+    color: white;
+    text-align: center;
+}
+
+.titulo-pagina {
+    font-family: 'Science Gothic', sans-serif;
+    color: #72c443;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.45);
+    font-size: 2.6rem;
+    margin-bottom: 6px;
+    /* ligeiro gradiente para dar mais vida ao título */
+    background: linear-gradient(90deg, #8ef07a, #72c443);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.descricao-pagina {
+    font-size: 1.05rem;
+    margin: 0 auto 36px auto;
+    max-width: 900px;
+    opacity: 0.92;
+    line-height: 1.6; /* melhora legibilidade */
+    color: #dfffe0;
+}
+
+/* CONTAINER DOS CARDS */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite múltiplas linhas */
+    justify-content: center;
+    gap: 30px;
+}
+
+/* CARD
+    - Largura/altura fixas para manter consistência visual entre diferentes personagens.
+    - `overflow: visible` é necessário para o efeito de imagem que "escapa" do container.
+*/
+.card-personagem {
+    width: 300px;
+    height: 460px;
+    background: #0d0d0d;
+    border: 2px solid #00ff80;
+    border-radius: 15px;
+    position: relative;
+    overflow: visible;
+    transition: transform .3s ease, box-shadow .3s ease; 
+}
+
+.card-personagem:hover {
+    transform: scale(1.05); /* Leve zoom ao passar o mouse */
+    box-shadow: 0 0 20px #00ff80;
+}
+
+/* ÁREA VISUAL DO CARD (IMAGEM)
+    - Contém a thumbnail e a imagem full-body.
+    - `position: relative` para ancorar o posicionamento absoluto do full-body.
+*/
+.img-area {
+    position: relative;
+    width: 100%;
+    height: 70%;
+    overflow: visible;
+}
+
+/* Thumb (imagem inicial de fundo)
+    - `object-fit: cover` é usado para preencher o espaço de maneira proporcional;
+*/
+.img-area .thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cobre todo o contêiner */
+    transition: .4s ease;
+}
+
+/* Escurece + desfoca no hover para destacar o full-body */
+.card-personagem:hover .thumb {
+    filter: brightness(0.3) blur(3px);
+}
+
+/* PERSONAGEM CORPO INTEIRO (full-body)
+    - Posicionamento absoluto centralizado.
+    - `bottom: -40px` — faz a imagem "sair" do card criando profundidade.
+    - `height: 140%` aumenta a presença visual; monitorar para evitar overflow em telas pequenas.
+*/
+.img-area .full-body {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* Centraliza horizontalmente */
+    bottom: -40px;
+    height: 140%;
+    width: auto;
+    opacity: 0; /* Inicialmente invisível */
+    filter: brightness(0.4) blur(4px); /* Escurecido e desfocado */
+    transition: 0.45s ease; /* Transição suave */
+    z-index: 10; /* Acima da thumb */
+}
+
+/* Mostra personagem em destaque */
+.card-personagem:hover .full-body {
+    opacity: 1; /* Torna visível */
+    filter: brightness(1) blur(0); /* Remove escurecimento e desfoque */
+}
+
+/* INFO (NOME + TEXTO)
+    - Barra na base do card com gradiente para garantir legibilidade do texto.
+*/
+.info-area {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30%;
+    padding: 15px;
+    color: #fff;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    text-align: left;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    overflow: hidden;
+}
+
+/* Título do personagem (dentro do info-area)
+    - Usa `Science Gothic` para destaque tipográfico.
+*/
+.info-area h2 {
+    font-size: 1.35rem;
+    margin: 0 0 6px 0;
+    color: #e8ffd8;
+    font-family: 'Science Gothic', sans-serif;
+    letter-spacing: 0.6px;
+    text-transform: capitalize;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.55);
+}
+
+.info-area p {
+    font-size: 0.95rem;
+    opacity: 0.95;
+    line-height: 1.5; /* espaçamento entre linhas para leitura */
+    margin: 0; /* remove espaços indesejados */
+    color: #e7ffe6;
+    text-wrap: balance;
+}
+
+/* Meta/informações pequenas (ex.: Quirk, Aliança, Classe) */
+.info-area .info-meta {
+    display: block;
+    font-size: 0.8rem;
+    color: #bfe9b6;
+    margin-top: 6px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+/* Trechos descritivos (bio) com recuo e destaque sutil */
+.info-area .bio {
+    margin-top: 8px;
+    font-size: 0.92rem;
+    color: #dfffe0;
+    opacity: 0.98;
+    line-height: 1.5;
+}
+
+/* Estilo específico para os personagens: variações de cor ao hover */
+.card-bakugo:hover {
+    box-shadow: 0 0 20px #ff7b00;
+    border: 1px solid #ff3c00;
+}
+
+.card-todoroki:hover {
+    box-shadow: 0 0 20px #3399ff;
+    border: 1px solid #0066ff;
+}
+
+.card-uraraka:hover {
+    box-shadow: 0 0 20px pink;
+    border: 1px solid plum;
+}
+
+.card-allmight:hover {
+    box-shadow: 0 0 20px gold;
+    border: 1px solid yellow;
+}
+
+.card-shigaraki:hover {
+    box-shadow: 0 0 20px #800080;
+    border: 1px solid #9400d3;
+}
+
+.espacamento {
+    margin-top: 22px;
+}

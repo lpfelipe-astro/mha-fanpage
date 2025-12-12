@@ -1,0 +1,43 @@
+/* CSS para a página de Quirks (quirks.html) */
+
+/* BOX GERAL QUE CONTÉM TODAS AS QUIRKS */
+
+.quirk-container {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+/* BOX INDIVIDUAL DE CADA TIPO DE QUIRK */
+.quirk-box {
+    border: 2px solid rgba(114, 196, 67, 0.9); /* igual ao aside */
+    border-radius: 15px;
+    padding: 22px;
+    background: rgba(255,255,255,0.03);
+    box-shadow:
+        0 0 12px rgba(114, 196, 67, 0.25),
+        0 0 28px rgba(114, 196, 67, 0.18);
+}
+
+.quirk-title {
+    font-family: 'Science Gothic', sans-serif;
+    color: #72c443;
+    margin-bottom: 12px;
+}
+
+/* Caixa da imagem da sessão */
+.quirk-img-box {
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 12px;
+    overflow: hidden;  /* para arredondar bordas da imagem */
+    border: 2px solid #72c443;
+}
+
+/* Imagem dentro da caixa */
+.quirk-img-box img {
+    width: 100%;
+    height: 220px; /* ajusta o tamanho retangular */
+    object-fit: cover; /* garante corte bonito */
+    display: block; 
+}

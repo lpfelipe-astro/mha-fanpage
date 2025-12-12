@@ -1,0 +1,647 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    scroll-padding-top: 160px; /* Espaço para o header fixo ao usar âncoras */
+    scroll-behavior: smooth; /* Suaviza a rolagem para âncoras internas */
+}
+
+/*
+    Fontes
+    - Importa fontes remotas (Google Fonts) e registra fontes locais com @font-face.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Science+Gothic:wght@100..900&display=swap');
+
+@font-face {
+    font-family: 'Futura Display';
+    src: url('arquivos-fonte/Futura-display/Futura\ Display.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal; 
+    font-display: swap; /* Evita o "flash" de texto sem estilo */
+}
+
+@font-face {
+    font-family: 'Science Gothic';
+    src: url("arquivos-fonte/Science-gothic/ScienceGothic-VariableFont_CTRS\,slnt\,wdth\,wght.ttf") format('truetype');
+    font-weight: 100 900; /* Fonte variável: define o intervalo de pesos */
+    font-style: normal;
+    font-display: swap; 
+}
+
+/* Fim do upload das fontes */
+
+/*
+    Body (configurações globais)
+    - Cor de fundo principal, cor do texto e altura de linha base para legibilidade.
+*/
+body {
+    background: #162525;
+    color: rgb(255, 255, 255);
+    line-height: 1.6;
+}
+
+/*
+    Scrollbar personalizada (WebKit)
+    - Apenas navegadores baseados em WebKit reconhecem estes seletores.
+    - Ajuste de track/thumb para combinar com o tema escuro.
+*/
+
+html::-webkit-scrollbar { /* Seleciona a scrollbar inteira */
+    width: 7px;
+}
+
+html::-webkit-scrollbar-track { /* Fundo da scrollbar */
+    background: rgba(15, 29, 59, 0.432);
+    backdrop-filter: blur(6px);
+    border-radius: 20px;
+}
+
+html::-webkit-scrollbar-thumb { /* Visão da scrollbar */
+    background: linear-gradient(130deg, #00ff85, #00c75c);
+    background-size: 300% 300%;
+    border-radius: 20px;
+}
+
+/*
+    Logo
+    - Regras para o link que envolve a logo (`header a`) e para a imagem da logo (`.logo`).
+    - Preferi controlar tamanho pela imagem (width/height) para manter a proporção.
+*/
+
+header a {
+    display: block;
+    width: 12%;
+    padding-top: 1px;
+}
+
+.logo {
+    width: 90%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+/*
+    Header & Navbar container
+    - Agrupa 'header' e 'nav' para facilitar o posicionamento do topo (sticky).
+    - 'z-index' alto evita que o conteúdo role por cima do topo.
+*/
+
+.container-header-nav {
+    position: sticky; /* Mantém no topo ao rolar */
+    top: 0; /* Fica colado ao topo da viewport */
+    z-index: 1000; /* Garante que fique acima do conteúdo */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+header {
+    /* vidro fosco: tentativa de fazer igual ao ".painel-vidro" */
+    background: rgba(20, 20, 20, 0.36);
+    backdrop-filter: blur(12px); /* efeito de desfoque */
+    -webkit-backdrop-filter: blur(12px); /* suporte Safari */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 3%;
+    height: 80px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28);
+    transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease; /* transições suaves */
+    position: relative;
+    z-index: 1000;
+}
+
+header:hover {
+    transform: translateY(-2px); /* leve elevação */
+    box-shadow:
+        0 6px 16px rgba(6, 239, 72, 0.7),
+        0 18px 40px rgba(6, 239, 72, 0.26),
+        0 0 56px rgba(6, 239, 72, 0.14);
+        /* brilho verde ao redor */
+}
+
+.header-opacidaede {
+    background: rgba(20, 20, 20, 0.4);
+}
+
+/*
+    Navbar (barra de navegação)
+    - Contém os links principais do site. Preferi que o fundo e o efeito visual
+    não tornem os itens clicáveis semi-translúcidos; por isso usei cores com alpha
+    apenas no background ou pseudo-elementos para overlay.
+*/
+
+.navbar {
+    background: rgba(28, 26, 36, 0.9);
+    display: flex;
+    justify-content: flex-end; /* Alinha os links à direita */
+    padding: 1% 2%;
+}
+
+.nav-list {
+    list-style: none; /* Remove marcadores padrão */
+    display: flex;
+    gap: 1vw; /* Espaçamento entre os links, 1vw = 1% da largura da viewport */
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+    Links da Navbar
+    - Estilização dos links: cor, "peso" e padding. Usei 'position: relative'  para o
+    pseudo-elemento que cria o underscore animado (linha que cresce no hover).
+*/
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Science Gothic', sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.4vh 0.8vw;
+    border-radius: 7px;
+    transition: all 0.3s ease;  /* Transição suave para hover */
+    position: relative;
+    overflow: hidden; /* Garante que o underscore não ultrapasse os limites do link */
+}
+
+.nav-link::after {
+    content: ""; /* Elemento vazio para o efeito */
+    position: absolute; /* Posição absoluta dentro do link */
+    bottom: -5px; /* Posicionado um pouco abaixo do texto */
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: #b00ef5;
+    transition: width 0.5s ease;  /* Animação suave */
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link:hover {
+    color: #b00ef5;
+    text-shadow: /* brilho roxo ao redor do texto */
+        0 0 20px #b00ef5,
+        0 0 40px #b00ef5;
+}
+
+/* Div para efeito/fundo */
+#bgdiv {
+    position: fixed; /* Fixa na tela */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10; /* Fica atrás de todo o conteúdo */
+    pointer-events: none; /* Não interfere na interação do usuário */
+    opacity: 0.6;
+}
+
+/* Seção Hero */
+.secao-hero { 
+    display: flex;
+    position: relative;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Esconde transbordamentos */
+}
+
+/*
+    Halftone overlay (pontilhados)
+    - Uma camada decorativa sobre a seção hero para dar textura.
+    - 'pointer-events: none' para não interferir na interação do usuário.
+*/
+.sobreposicao-halftone {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.15) 2px, transparent 2.5px);
+    background-size: 15px 15px;
+    mask-image: linear-gradient(to bottom, black 20%, transparent 100%); /* Desvanece para baixo */
+    -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 100%); /* Suporte Safari */
+    pointer-events: none;
+}
+
+/*
+    Sombras/luar colorido por trás do conteúdo
+    - Círculos muito borrados que criam manchas de cor suaves no background.
+    - z-index: usei -5 para posicionar essas sombras acima do bgdiv
+    ('#bgdiv' tem z-index: -10) mas atrás do conteúdo principal.
+*/
+.sombra {
+    position: absolute; /* Posicionamento absoluto dentro da seção hero */
+    width: 24rem;
+    height: 24rem;
+    border-radius: 50%; /* Forma circular */
+    filter: blur(100px); /* Borrão intenso para suavizar as bordas */
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite; /* Animação de pulso suave */
+    will-change: transform, opacity, filter; /* otimização de performance */
+    z-index: -5;
+    pointer-events: none;
+}
+
+.sombra-verde {
+    top: 33%;
+    left: 25%;
+    background: rgba(23, 117, 50, 0.7);
+}
+
+.sombra-roxa {
+    bottom: 25%;
+    right: 25%;
+    background: rgba(99, 5, 154, 0.7);
+    animation-delay: 1s;
+}
+
+/* Pulse: variação de escala, opacidade e blur para um efeito sutil de respiração */
+@keyframes pulse {
+    0% {
+        transform: scale(0.98);
+        opacity: 0.82;
+        filter: blur(100px);
+    }  /* A animação começa aqui, com escala menor, opacidade reduzida e blur maior */
+
+    50% {
+        transform: scale(1.06);
+        opacity: 1;
+        filter: blur(60px);
+    } /* No meio da animação, a escala aumenta, a opacidade fica total e o blur diminui */
+
+    100% {
+        transform: scale(0.98);
+        opacity: 0.82;
+        filter: blur(100px);
+    } /* A animação retorna ao estado inicial */
+}
+
+
+/* Tamanho título Hero */
+
+.hero-title {
+    font-size: 4.5rem; /* 1rem equivale a 16px da fonte base */
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1; /* Altura da linha igual ao tamanho da fonte */
+    margin-bottom: 0.5rem;
+    margin-top: 60px;
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+@media (min-width: 768px) {
+    .hero-title {
+        font-size: 8rem;
+    }
+} /* Faz com que o título aumente em telas maiores */
+
+.gradient-text {
+    background: linear-gradient(to right, #ffffff, #6b7280);
+    /* background-clip serve para colocar o fundo (cor ou imagem) dentro do texto, fazendo o texto "herdar" esse fundo. */
+    -webkit-background-clip: text; /* Clipa o background para o texto no Safari/Chrome */
+    background-clip: text; /* Clipa o background para o texto no Firefox e outros navegadores */
+    color: transparent;
+    margin-bottom: 5px;
+    font-family: 'Futura Display', sans-serif;
+}
+
+.text-outline {
+    -webkit-text-stroke: 1px white; /* contorno branco */
+    color: rgba(0, 0, 0, 0.2);
+    font-weight: 900;
+    z-index: 10;
+    position: relative;
+}
+
+/* Citação */
+
+.quote-box {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.quote-card {
+    padding: 1.5rem;
+    border-radius: 1rem;
+    font-family: 'Science Gothic', sans-serif;
+}
+
+
+/* Painel de "vidro" - Citação */
+
+.painel-vidro {  /* Painel com estética de vidro fosco */
+    position: relative;
+    overflow: hidden;
+    background: rgba(20, 20, 20, 0.38);
+    backdrop-filter: blur(12px); /* efeito de desfoque */
+    -webkit-backdrop-filter: blur(12px); /* suporte Safari */
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.32);
+    transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease; /* transições suaves */
+}
+
+/* brilho superior sutil (reflexo) */
+
+.painel-vidro::before { /* Propriedade antes para brilho */
+    content: ''; /* elemento vazio para o efeito */
+    position: absolute;
+    left: 50%; /* centraliza horizontalmente */
+    top: 6px; /* distância do topo */
+    transform: translateX(-50%); /* ajusta para centralizar */
+    width: 60%;
+    height: 8px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04));
+    filter: blur(6px);
+    opacity: 0.7;
+    pointer-events: none; /* não interfere na interação do usuário */
+    z-index: 1; /* fica acima do conteúdo, mas abaixo do texto */
+}
+
+/* sombra interna inferior para profundidade */
+
+.painel-vidro::after { /* Propriedade depois para sombra interna */
+    content: '';
+    position: absolute;
+    left: 0; /* alinha à esquerda */
+    right: 0; /* alinha à direita */
+    bottom: 0; /* alinha ao fundo */
+    height: 20px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.05));
+    pointer-events: none;
+    opacity: 0.9;
+    z-index: 0; /* fica abaixo do conteúdo */
+}
+
+/* garantir que o conteúdo do painel fique acima dos pseudo-elementos */
+
+.painel-vidro > * {  /* Seleciona todos os filhos diretos do painel */
+    position: relative;
+    z-index: 2;
+}
+
+/* Pequeno efeito ao passar o mouse: destacar o painel */
+.painel-vidro:hover {
+    transform: translateY(-3px); /* leve elevação */
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* Botão bacana */
+
+.botao-container {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-primario {
+    position: relative;
+    display: inline-flex; 
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    transition: all 0.2s;
+}
+
+.btn-primario:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.btn-bg {
+    position: absolute;
+    inset: 0; /* top: 0; right: 0; bottom: 0; left: 0; */
+    margin-top: -0.25rem; /* ajusta para ficar alinhado */
+    border-radius: 0.5rem;
+    opacity: 0.3;
+    background: linear-gradient(to bottom, transparent, transparent, #e5e7eb); 
+}
+
+.btn-text {
+    position: relative;
+    text-transform: uppercase; /* Fica em caps lock */
+    letter-spacing: 0.1em;
+    font-family: "Science Gothic", sans-serif;
+}
+
+.icon-arrow {
+    margin-left: 0.5rem;
+    transition: transform 0.3s;
+}
+
+.btn-primario:hover .icon-arrow {
+    transform: translateY(4px);
+}
+
+
+/* Container Sidebar & Article */
+
+.container-sidebar-article {
+    display: flex;
+    gap: 30px;
+    margin: 40px 30px; /* Espaçamento ao redor do container */
+    min-height: calc(100vh - 500px); /* Ajuste conforme necessário */
+}
+
+/* Sidebar */
+
+.sidebar {
+    width: 300px;
+    flex-shrink: 0; /* Evita que a sidebar encolha */
+    position: sticky; /* Mantém a sidebar visível ao rolar */
+    top: 160px;
+    align-self: flex-start; /* Alinha ao topo do container */
+    height: fit-content; /* Altura ajustada ao conteúdo */
+}
+
+.sidebar-content {
+    position: relative;
+    background: rgba(20, 20, 20, 0.35);
+    backdrop-filter: blur(10px); /* efeito de desfoque */
+    -webkit-backdrop-filter: blur(10px); /* suporte Safari */
+    border-radius: 20px;
+    padding: 25px;
+    border: 2px solid rgba(114, 196, 67, 0.45);
+    box-shadow:
+        0 0 12px rgba(114, 196, 67, 0.25),
+        0 0 28px rgba(114, 196, 67, 0.18);
+    animation: energiaPulseAside 3s infinite ease-in-out;
+}
+
+/* brilho de energia pulsante */
+
+@keyframes energiaPulseAside {
+    0% {
+        box-shadow:
+            0 0 10px rgba(114, 196, 67, 0.25), /* 0 0 10px significa um brilho suave */
+            0 0 22px rgba(114, 196, 67, 0.12); 
+        border-color: rgba(114, 196, 67, 0.45);
+    } /* Estado inicial começa com estas definições */
+
+    50% {
+        box-shadow:
+            0 0 30px rgba(160, 255, 110, 0.75),
+            0 0 55px rgba(160, 255, 110, 0.35);
+        border-color: rgba(160, 255, 110, 1);
+    } /* No meio da animação, o brilho aumenta e a borda fica mais intensa */
+
+    100% {
+        box-shadow:
+            0 0 10px rgba(114, 196, 67, 0.25),
+            0 0 22px rgba(114, 196, 67, 0.12);
+        border-color: rgba(114, 196, 67, 0.45);
+    } /* A animação retorna ao estado inicial */
+}
+
+/* Quando o mouse passa, a energia "aumenta" */
+.sidebar-content:hover {
+    animation: energiaCarregandoAside 1.5s infinite ease-in-out;
+}
+
+@keyframes energiaCarregandoAside {
+    0% {
+        box-shadow:
+            0 0 20px rgba(0, 255, 60, 0.45),
+            0 0 45px rgba(0, 255, 60, 0.22);
+    }
+
+    50% {
+        box-shadow:
+            0 0 45px rgba(160, 255, 110, 0.95),
+            0 0 75px rgba(160, 255, 110, 0.55);
+    }
+
+    100% {
+        box-shadow:
+            0 0 20px rgba(0, 255, 60, 0.45),
+            0 0 45px rgba(0, 255, 60, 0.22);
+    }
+}
+
+.sidebar-content h3, .sidebar-content h4 {
+    color: #72c443;
+    margin-bottom: 15px;
+    font-family: 'Science Gothic', sans-serif;
+    font-weight: 600;
+}
+
+.sidebar-list {
+    list-style: none;
+    margin-bottom: 25px;
+}
+
+.sidebar-list li {
+    margin-bottom: 8px;
+    font-family: 'inter', sans-serif;
+}
+
+.sidebar-link {
+    color: #b8f0d0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: block;
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+.sidebar-link:hover{
+    color: #cfa9ee;
+    background: rgba(180, 17, 201, 0.1);
+    transform: translateX(5px);
+}
+
+.links-rapidos ul{
+    list-style: none;
+}
+
+.links-rapidos li{
+    margin-bottom: 8px;
+}
+
+/* Article */
+
+.article-content {
+    flex: 1; /* Ocupa o espaço restante */
+    background: rgba(28, 26, 36, 0.9);
+    backdrop-filter: blur(12px); /* efeito de desfoque */
+    -webkit-backdrop-filter: blur(12px);  /* suporte Safari */
+    border: 1px solid rgba(114, 196, 67, 0.45);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28);
+    text-align: justify;
+    font-family: 'inter', sans-serif;
+}
+
+
+/* Footer */
+
+footer {
+    background: #2c0144;
+    margin-top: 50px;
+    font-family: 'inter', sans-serif;
+}
+
+.footer-content {
+    padding: 30px;
+    text-align: center;
+}
+
+.footer-content h2 {
+    color: #72c443;
+    margin-bottom: 10px;
+    font-family: 'Science Gothic', sans-serif;
+    font-weight: 600;
+}
+
+.footer-info hr {
+    border: none; /* Remove a borda padrão */
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #72c443, transparent);
+    margin: 20px 0;
+}
+
+.footer-links {
+    margin-top: 20px;
+}
+
+.footer-links h4 {
+    color: #72c443;
+    margin-bottom: 10px;
+}
+
+.footer-links ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #72c443;
+}

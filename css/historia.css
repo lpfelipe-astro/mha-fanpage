@@ -1,0 +1,76 @@
+/* CSS para a página de História (historia.html)
+
+    Comentários selecionados:
+    - `.hist-box`: caixas de seção usadas para separar blocos de conteúdo.
+    - `.hist-img`: contêiner que recebe imagens via `background-image` => útil para sobreposição/recorte.
+    - `.img-ua` e `.img-viloes`: uso de `contain` para evitar crop em imagens de campus/panorâmicas.
+*/
+
+/* --- CAIXAS DE SESSÃO --- */
+.hist-box {
+    border: 2px solid #72c443;
+    border-radius: 15px;
+    padding: 20px 25px;
+    margin: 30px 0;
+    background: rgba(255, 255, 255, 0.03);
+    font-family: 'Inter', sans-serif;
+}
+
+.hist-box h2 {
+    color: #72c443;
+    font-family: 'Science Gothic', sans-serif;
+    margin-bottom: 10px;
+}
+
+/* --- IMAGENS DAS SESSÕES --- */
+/*
+    - `.hist-img` é usado como wrapper para imagens que entram por background-image. */
+.hist-img {
+    width: 100%;
+    height: 260px;
+    border-radius: 18px;
+    margin: 20px 0 40px 0;
+    background-size: cover; /* Cobre todo o contêiner */
+    background-repeat: no-repeat; /* Evita repetição */
+    opacity: 0.85; /* Leve transparência */
+}
+
+/* Troque depois pelas imagens reais */
+.img-allmight {
+    background-image: url("../../imagens/historia/allmight.jpg");
+}
+
+.img-ofa {
+    background-image: url("../../imagens/historia/ofa.png");
+    background-position: 2%;
+}
+
+.img-ua {
+    background-image: url("../../imagens/historia/ua-campus.png");
+    background-size: contain; /* Mostrar imagem inteira sem cortar */
+    background-position: center;
+    background-repeat: no-repeat; 
+}
+
+.img-viloes {
+    background-image: url("../../imagens/historia/villains.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img-quirk {
+    background-image: url("../../imagens/historia/individualidades.png");
+}
+
+.img-afo {
+    background-image: url("../../imagens/historia/afo.png");
+    background-position: center;
+}
+
+/* Título */
+.titulo-principal {
+    text-align: center;
+    color: chartreuse;
+    margin-bottom: 25px;
+}

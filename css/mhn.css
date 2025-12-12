@@ -1,0 +1,126 @@
+/* My Hero News — estilos para páginas de notícias
+
+    Comentários principais:
+    - Estrutura: seção principal (`#mhnews`) -> marquee de breaking-news -> layout com
+    article (news-container) e aside (side-info).
+    - Escolhi cores verdes em títulos para consistência temática.
+*/
+
+/* ESTRUTURA GERAL */
+#mhnews {
+    padding: 40px;
+    color: #fff;
+}
+
+.titulo {
+    font-size: 3rem;
+    text-align: center;
+    color: #00ff80; /* verde temático */
+    font-family: 'Science Gothic', sans-serif;
+}
+
+.subtitulo {
+    text-align: center;
+    opacity: 0.8;
+    margin-bottom: 40px;
+}
+
+/* MARQUEE (breaking news) */
+.breaking-news {
+    background: #b41fff;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    padding: 8px 0;
+    font-weight: bold;
+    border-bottom: 2px solid #000;
+}
+
+/* LAYOUT PRINCIPAL */
+.layout-container {
+    display: flex;
+    gap: 25px;
+    margin-top: 25px;
+}
+
+/* ARTICLE (notícias) */
+.news-container {
+    flex: 3;
+    display: flex;
+    flex-direction: column; /* empilha as notícias verticalmente */
+    gap: 25px;
+}
+
+/* CAIXA DE NOTÍCIA */
+.news-box {
+    background: rgba(0,0,0,0.65);
+    border: 2px solid #262626;
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    gap: 15px;
+    transition: .3s ease;
+}
+
+.news-box:hover {
+    border-color: #00ff80;
+    transform: scale(1.02);
+}
+
+.news-box img {
+    width: 160px;
+    height: 120px;
+    object-fit: cover; /* preenche a miniatura mantendo proporção */
+    border-radius: 10px;
+}
+
+/* NOTÍCIA PRINCIPAL (DESTAQUE) */
+.news-box.destaque {
+    padding: 0;
+    overflow: hidden;
+    position: relative; /* para posicionar texto sobre a imagem */
+    flex-direction: column;
+}
+
+.news-box.destaque img {
+    width: 100%;
+    height: 250px;
+    border-radius: 0;
+}
+
+.news-box.destaque .text {
+    padding: 15px;
+}
+
+/* TÍTULOS DAS NOTÍCIAS */
+.news-box h2,
+.news-box h3 {
+    color: #00ff80;
+    font-family: 'Science Gothic', sans-serif;
+}
+
+/* ASIDE (barra lateral)
+    - Conteúdo rápido, listas e boletins em `.side-info`.
+*/
+.side-info {
+    flex: 1;
+    background: rgba(0,0,0,0.55);
+    padding: 20px;
+    border-radius: 12px;
+    border: 2px solid #333;
+}
+
+.side-info h2,
+.side-info h3 {
+    color: #00ff80;
+    font-family: 'Science Gothic', sans-serif;
+}
+
+.side-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.side-info ul li {
+    padding: 6px 0;
+    border-bottom: 1px solid #333;
+}
